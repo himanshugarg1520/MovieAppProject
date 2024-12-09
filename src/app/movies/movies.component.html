@@ -1,0 +1,42 @@
+<div class="container">
+
+    <h2>Movies List</h2>
+    <div>
+        <label for="movieid">MovieID</label>
+        <input  id="movieid" [(ngModel)]="movieid" placeholder="Enter Movie ID"/>
+        <button (click)="onEdit()">Edit By ID</button>
+    </div>
+    <br>
+
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" >
+        <div>
+            <label for="title">Title</label>
+            <input id="title" formControlName="title">
+        </div>
+
+        <div>
+            <label for="genre">Genre</label>
+            <input id="genre" formControlName="genre">
+        </div>
+
+        <div>
+            <label for="year">Year</label>
+            <input id="year" type="number" formControlName="year">
+        </div>
+
+        <button type="submit" >
+            {{selectedmovies ? 'Update':'Add'}} Movie
+        </button>
+
+    </form>
+
+    <h3>Movies</h3>
+
+    <ul>
+        <li *ngFor="let item of movies">
+            {{item.id}} - {{item.title}} {{item.year}} - {{item.genre}}
+            <button (click)="onDelete(item.id)">Delete</button>
+        </li>
+    </ul>
+    
+</div>
